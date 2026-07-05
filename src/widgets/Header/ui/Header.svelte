@@ -2,6 +2,29 @@
   import Title from '$shared/Title';
   import Button from '$shared/Button';
   import Paragraff from '$shared/Paragraff';
+  import { MonthData } from '$entities/MonthData';
+
+  let NumberMonth = $state(1);
+  let MonthName = $state('');
+
+  function VisibleMonth() {
+    const month = MonthData.find((item) => item.number === NumberMonth);
+    if (month) {
+      MonthName = month.month;
+    }
+  }
+
+  function NextMonth() {
+    NumberMonth = NumberMonth < 12 ? NumberMonth + 1 : 1;
+    VisibleMonth();
+  }
+
+  function BackMonth() {
+    NumberMonth = NumberMonth > 1 ? NumberMonth - 1 : 12;
+    VisibleMonth();
+  }
+
+  VisibleMonth();
 </script>
 
 <header>
@@ -10,17 +33,21 @@
     <Title text="Контроль финансов" className="headerTitle"/>
   </section>
   <section class='headerSection'>
-    <Button text='<' className="headerButton" onclick=''/>
+    <Button text='<' className="headerButton" onclick={BackMonth}/>
     <div class='monthInfo'>
-      <img src="" alt="">
-      <Paragraff text="Январь" className="monthName"/>
+      <img class='icon-month' src="/icon-month.png" alt="Month">
+      <Paragraff text={MonthName} className="monthName"/>
       <Paragraff text="2025" className="monthYear"/>
     </div>
-    <Button text='>' className="headerButton" onclick=''/>
+    <Button text='>' className="headerButton" onclick={NextMonth}/>
   </section>
 </header>
 
 <style>
+.icon-month{
+  width: 10px;
+  height: 10px;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -37,9 +64,11 @@ header {
 .monthInfo{
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 5px;
   background-color: var(--secondary);
   border-radius: var(--rounded-medium);
   padding: 3px 10px;
+  width: 120px;
 }
 </style>
