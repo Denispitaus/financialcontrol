@@ -1,20 +1,22 @@
 <script>
-
+  import Title from '$shared/Title';
+  import Button from '$shared/Button';
+  import Paragraff from '$shared/Paragraff';
 </script>
 
 <header>
   <section class='headerSection'>
-    <img src='/path/to/logo.png' alt='Logo' />
-    <h1 class='headerTitle'>Контроль финансов</h1>
+    <img src="/icon-logo.png" alt="Logo">
+    <Title text="Контроль финансов" className="headerTitle"/>
   </section>
   <section class='headerSection'>
-    <button class='headerButton'>b</button>
+    <Button text='<' className="headerButton" onclick=''/>
     <div class='monthInfo'>
       <img src="" alt="">
-      <p class="monthName">Январь</p>
-      <p class="monthYear">2025</p>
+      <Paragraff text="Январь" className="monthName"/>
+      <Paragraff text="2025" className="monthYear"/>
     </div>
-    <button class='headerButton'>n</button>
+    <Button text='>' className="headerButton" onclick=''/>
   </section>
 </header>
 
@@ -32,16 +34,6 @@ header {
   align-items: center;
   gap: 10px;
 }
-.headerTitle{
-  font-size: var(--font-large);
-  color: var(--foreground);
-}
-.headerButton{
-  border: 1px solid var(--border);
-  background-color: var(--secondary);
-  color: var(--secondary-foreground);
-  border-radius: var(--rounded-medium);
-}
 .monthInfo{
   display: flex;
   align-items: center;
@@ -49,13 +41,5 @@ header {
   background-color: var(--secondary);
   border-radius: var(--rounded-medium);
   padding: 3px 10px;
-}
-.monthName{
-  font-size: var(--font-small);
-  color: var(--foreground);
-}
-.monthYear{
-  font-size: var(--font-small);
-  color: var(--muted-foreground);
 }
 </style>
