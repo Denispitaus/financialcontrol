@@ -13,7 +13,10 @@
       MonthName = month.month;
     }
   }
-
+  function checkNowDate(){
+    const date = new Date();
+    NumberMonth = date.getMonth() + 1;
+  }
   function NextMonth() {
     NumberMonth = NumberMonth < 12 ? NumberMonth + 1 : 1;
     VisibleMonth();
@@ -24,7 +27,8 @@
     VisibleMonth();
   }
 
-  VisibleMonth();
+  checkNowDate();
+  VisibleMonth()
 </script>
 
 <header>
@@ -37,7 +41,7 @@
     <div class='monthInfo'>
       <img class='icon-month' src="/icon-month.png" alt="Month">
       <Paragraff text={MonthName} className="monthName"/>
-      <Paragraff text="2025" className="monthYear"/>
+      <Paragraff text={new Date().getFullYear()} className="monthYear"/>
     </div>
     <Button text='>' className="headerButton" onclick={NextMonth}/>
   </section>
