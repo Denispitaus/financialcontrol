@@ -2,6 +2,10 @@
 	import Button from '$shared/Button';
   import Title from '$shared/Title';
   import Input from '$shared/Input'
+  import {MonthData} from '$entities/MonthData';
+
+  const daysInMonth = $state(MonthData.find((el) => {el.days}))
+  const daysRange = $state(Array.from({ length: 31 }, (_, i) => i + 1));
 </script>
 
 <section class='addRecord'>
@@ -17,9 +21,12 @@
   <Title text='День месяца' className='MainInfoTitle'/>
 
   <select id="country" name="country" class="inputRecord">
-    <option value="ru">1</option>
-    <option value="kz">2</option>
-    <option value="by">3</option>
+
+    {#each daysRange as day (day)}
+      <option value={day}>{day}</option>
+    {/each}
+
+
   </select>
   <Button text='Добавить категорию' className='addCategore'/>
 </section>
