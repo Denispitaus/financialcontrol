@@ -3,8 +3,23 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": false,
-		"moduleResolution": "bundler"
+		"moduleResolution": "bundler",
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "$app": ["src/app"],
+      "$app/*": ["src/app/*"],
+      "$pages": ["src/pages"],
+      "$pages/*": ["src/pages/*"],
+      "$widgets": ["src/widgets"],
+      "$widgets/*": ["src/widgets/*"],
+      "shared":["src/shared"],
+      "shared/*":["src/shared/*"],
+      "entities":["src/entities"],
+      "entities/*":["src/entities/*"]
+    },
 	}
+
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
 	//
