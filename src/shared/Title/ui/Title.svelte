@@ -33,4 +33,11 @@ const {
   color: var(--foreground);
   margin-bottom: 10px;
 }
+.TitleBlock{
+  color:var(--foreground);
+  font-size: var(--font-small);
+  border-left: 5px solid var(--primary);
+  padding-left: 10px;
+  border-radius: 2px;
+}
 </style>

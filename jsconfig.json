@@ -16,7 +16,9 @@
       "shared":["src/shared"],
       "shared/*":["src/shared/*"],
       "entities":["src/entities"],
-      "entities/*":["src/entities/*"]
+      "entities/*":["src/entities/*"],
+      "features":["src/features"],
+      "features/*":["src/features/*"],
     },
 	}
 
