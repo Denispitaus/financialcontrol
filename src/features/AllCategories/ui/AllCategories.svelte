@@ -1,25 +1,30 @@
 <script>
   import Title from "$shared/Title";
   import Button from "$shared/Button";
+  let {
+    MassivCategory,
+  } = $props()
 </script>
 
 
 <section class="AllCategories">
   <section class="lineInfo">
     <Title text='Список категорий' className='TitleBlock'/>
-    <Title text='6 записей' className='MainInfoTitle'/>
+    <Title text={MassivCategory.length + ' записей'} className='MainInfoTitle'/>
   </section>
+  {#each MassivCategory as el (el)}
     <section class="lineInfo">
-      <div class="numberName">
-        <Title text='1.' className='MainInfoTitle'/>
-        <div class="red"></div>
-        <Title text='Заработная плата' className='CategoryTitle'/>
-      </div>
-      <div class='numberName'>
-        <Title text='238475823₽' className='CategoryTitleGreen'/>
-        <Button className='btnRed' text='✕'/>
-      </div>
-  </section>
+        <div class="numberName">
+          <Title text='1.' className='MainInfoTitle'/>
+          <div class="red"></div>
+          <Title text={el.TitleSave} className='CategoryTitle'/>
+        </div>
+        <div class='numberName'>
+          <Title text={el.NumberSave} className='CategoryTitleGreen'/>
+          <Button className='btnRed' text='✕'/>
+        </div>
+    </section>
+  {/each}
 </section>
 
 <style>

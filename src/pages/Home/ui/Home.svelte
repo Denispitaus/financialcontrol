@@ -2,14 +2,16 @@
   import MainInfo from '$widgets/MainInfo';
   import NewRecord from '$features/NewRocord';
   import AllCategories from '$features/AllCategories';
+
+  const MassiveRecord = $state([])
 </script>
 
 <div class='home'>
   <MainInfo/>
   <section class='bodyBlock'>
     <section class='addAndRecorded'>
-      <NewRecord />
-      <AllCategories/>
+      <NewRecord JSRecords={MassiveRecord}/>
+      <AllCategories MassivCategory={MassiveRecord}/>
     </section>
   </section>
 </div>

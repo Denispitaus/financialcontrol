@@ -14,7 +14,8 @@
   let ButtonSave = $state(true)
 
   function clickAddRecord(){
-    console.log(ButtonSave, NumberSave, TitleSave, DaySave)
+    JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave})
+    console.log(JSRecords)
   }
   function clickRedBtn(){
     ButtonSave = false
@@ -22,6 +23,9 @@
   function clickGreenBtn(){
     ButtonSave = true
   }
+  let {
+    JSRecords,
+  } = $props()
 </script>
 
 <section class='addRecord'>
