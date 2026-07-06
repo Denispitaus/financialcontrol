@@ -12,10 +12,10 @@
 </script>
 
 <section class='maininfo'>
-  <MainCard title='ДОХОДЫ' moneyClass='MainInfoTitleMoney' button='Изменить' money={freeMoney + ' ₽'} date={'за ' + monthName + ' ' + new Date().getFullYear()} buttonVisible='true'/>
-  <MainCard title='РАСХОДЫ' moneyClass='MainInfoTitleMoneyRed' button='Изменить' money={notMoney + ' ₽'} date={'за ' + monthName + ' ' + new Date().getFullYear()} />
-  <MainCard title='БАЛАНС' moneyClass='MainInfoTitleMoneyDefault' button='Изменить' money={freeMoney - notMoney + ' ₽'} date='остаток'/>
-  <MainCard title='КАТЕГОРИИ' moneyClass='MainInfoTitleMoneyDefault' button='Изменить' money={countCategory} date='в этом месяце'/>
+  <MainCard title='ДОХОДЫ' moneyClass='MainInfoTitleMoney'  money={freeMoney + ' ₽'} date={'за ' + monthName + ' ' + new Date().getFullYear()} />
+  <MainCard title='РАСХОДЫ' moneyClass='MainInfoTitleMoneyRed' money={notMoney + ' ₽'} date={'за ' + monthName + ' ' + new Date().getFullYear()} />
+  <MainCard title='БАЛАНС' moneyClass='MainInfoTitleMoneyDefault' money={freeMoney - notMoney + ' ₽'} date='остаток'/>
+  <MainCard title='КАТЕГОРИИ' moneyClass='MainInfoTitleMoneyDefault' money={countCategory} date='в этом месяце'/>
 </section>
 
 
