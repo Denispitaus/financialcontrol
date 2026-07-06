@@ -15,7 +15,6 @@
 
   function clickAddRecord(){
     JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave})
-    console.log(JSRecords)
   }
   function clickRedBtn(){
     ButtonSave = false

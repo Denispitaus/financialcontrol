@@ -12,16 +12,16 @@
     <Title text='Список категорий' className='TitleBlock'/>
     <Title text={MassivCategory.length + ' записей'} className='MainInfoTitle'/>
   </section>
-  {#each MassivCategory as el (el)}
+  {#each MassivCategory as el, index (el)}
     <section class="lineInfo">
         <div class="numberName">
-          <Title text='1.' className='MainInfoTitle'/>
-          <div class="red"></div>
+          <Title text={index + 1 + '.'} className='MainInfoTitle'/>
+          <div class={el.ButtonSave? 'green' : 'red'}></div>
           <Title text={el.TitleSave} className='CategoryTitle'/>
         </div>
         <div class='numberName'>
-          <Title text={el.NumberSave} className='CategoryTitleGreen'/>
-          <Button className='btnRed' text='✕'/>
+          <Title text={el.NumberSave} className={el.ButtonSave? "CategoryTitleGreen" : "CategoryTitleRed"}/>
+          <Button className='btnRed' text='✕' onclick={()=>{MassivCategory.splice(index, 1)}}/>
         </div>
     </section>
   {/each}
@@ -32,6 +32,12 @@
   width: 10px;
   height: 10px;
   background-color: var(--danger-foreground);
+  border-radius: 50px;
+}
+.green{
+  width: 10px;
+  height: 10px;
+  background-color: var(--income-foreground);
   border-radius: 50px;
 }
 .numberName{

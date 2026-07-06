@@ -48,4 +48,8 @@ const {
   color:var(--income-foreground);
   font-size: var(--font-small);
 }
+.CategoryTitleRed{
+  color:var(--danger-foreground);
+  font-size: var(--font-small);
+}
 </style>

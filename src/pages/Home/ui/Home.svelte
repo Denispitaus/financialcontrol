@@ -4,10 +4,20 @@
   import AllCategories from '$features/AllCategories';
 
   const MassiveRecord = $state([])
+  let FreeMoney = $derived(
+    MassiveRecord
+      .filter(el => el.ButtonSave)
+      .reduce((sum, el) => sum + el.NumberSave, 0)
+  );
+  let NotMoney = $derived(
+    MassiveRecord
+      .filter(el => !el.ButtonSave)
+      .reduce((sum, el) => sum + el.NumberSave, 0)
+  )
 </script>
 
 <div class='home'>
-  <MainInfo/>
+  <MainInfo countCategory={MassiveRecord.length} freeMoney={FreeMoney} notMoney={NotMoney}/>
   <section class='bodyBlock'>
     <section class='addAndRecorded'>
       <NewRecord JSRecords={MassiveRecord}/>
