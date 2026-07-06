@@ -40,4 +40,12 @@ const {
   padding-left: 10px;
   border-radius: 2px;
 }
+.CategoryTitle{
+  color:var(--foreground);
+  font-size: var(--font-small);
+}
+.CategoryTitleGreen{
+  color:var(--income-foreground);
+  font-size: var(--font-small);
+}
 </style>

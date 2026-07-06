@@ -76,4 +76,15 @@ const {
 .addCategore:active{
   background-color: #5c9ecd;
 }
+.btnRed{
+  border-radius: var(--rounded-small);
+  background-color: var(--danger);
+  color: var(--danger-foreground);
+  border: none;
+  width: 20px;
+  height: 20px;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+}
 </style>

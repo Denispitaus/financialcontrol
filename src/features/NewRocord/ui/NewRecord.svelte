@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 500px;
+  width: 100%;
 }
 .addRecordButtons{
   display: flex;

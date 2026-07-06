@@ -1,6 +1,7 @@
 <script>
   import MainInfo from '$widgets/MainInfo';
   import NewRecord from '$features/NewRocord';
+  import AllCategories from '$features/AllCategories';
 </script>
 
 <div class='home'>
@@ -8,9 +9,7 @@
   <section class='bodyBlock'>
     <section class='addAndRecorded'>
       <NewRecord />
-      <section class="vieRecords">
-
-      </section>
+      <AllCategories/>
     </section>
   </section>
 </div>
@@ -27,7 +26,7 @@
   justify-content: space-between;
   gap: 15px;
   width: 100%;
-
+  padding: 0 15px;
   box-sizing: border-box;
 }
 .addAndRecorded{
@@ -36,10 +35,8 @@
   gap: 15px;
   justify-content: space-between;
   align-items: center;
+  min-width: 500px;
+
 }
-.vieRecords{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
+
 </style>
