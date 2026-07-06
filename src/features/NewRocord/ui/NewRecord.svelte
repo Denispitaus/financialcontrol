@@ -4,23 +4,39 @@
   import Input from '$shared/Input'
   import {MonthData} from '$entities/MonthData';
 
-  const daysInMonth = $state(MonthData.find((el) => {el.days}))
-  const daysRange = $state(Array.from({ length: 31 }, (_, i) => i + 1));
+  let nowMonth = $state(new Date().getMonth() + 1);
+  const maxDayMonth = $state(MonthData.find((item) => item.number === nowMonth).days)
+  const daysRange = $state(Array.from({ length: maxDayMonth }, (_, i) => i + 1));
+
+  let NumberSave = $state()
+  let TitleSave = $state('')
+  let DaySave = $state()
+  let ButtonSave = $state(true)
+
+  function clickAddRecord(){
+    console.log(ButtonSave, NumberSave, TitleSave, DaySave)
+  }
+  function clickRedBtn(){
+    ButtonSave = false
+  }
+  function clickGreenBtn(){
+    ButtonSave = true
+  }
 </script>
 
 <section class='addRecord'>
   <Title text='Добавить запись' className='TitleBlock'/>
   <div class='addRecordButtons'>
-    <Button text='+ Доход' className='btnRecordGreen'/>
-    <Button text='- Расход' className='btnRecordRed'/>
+    <Button text='+ Доход' className={ButtonSave? "btnRecordGreenActive" : "btnRecordGreen"} onclick={clickGreenBtn}/>
+    <Button text='- Расход' className={!ButtonSave? "btnRecordReActive" : "btnRecordRed"} onclick={clickRedBtn}/>
   </div>
   <Title text='Название категории' className='MainInfoTitle'/>
-  <Input className='inputRecord' placeholder='Например: Аренда, Еда...'/>
+  <Input className='inputRecord' placeholder='Например: Аренда, Еда...' type='text' bind:value={TitleSave}/>
   <Title text='Сумма, ₽' className='MainInfoTitle'/>
-  <Input className='inputRecord' placeholder='0.00'/>
+  <Input className='inputRecord' placeholder='0.00' type='number' bind:value={NumberSave}/>
   <Title text='День месяца' className='MainInfoTitle'/>
 
-  <select id="country" name="country" class="inputRecord">
+  <select id="country" name="country" class="inputRecord" bind:value={DaySave}>
 
     {#each daysRange as day (day)}
       <option value={day}>{day}</option>
@@ -28,7 +44,7 @@
 
 
   </select>
-  <Button text='Добавить категорию' className='addCategore'/>
+  <Button text='Добавить категорию' className='addCategore' onclick={clickAddRecord}/>
 </section>
 
 
@@ -42,6 +58,7 @@
   padding: 5px 10px;
   width: 100%;
   box-sizing: border-box;
+  outline: none;
 }
 .addRecord{
   padding: 15px;

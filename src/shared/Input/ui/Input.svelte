@@ -1,13 +1,13 @@
 <script>
-  const {
+  let {
     placeholder,
     className,
-    value,
+    value = $bindable(),
     type
   } = $props()
 </script>
 
-<input placeholder={placeholder} class={className} value={value} type={type}/>
+<input placeholder={placeholder} class={className} bind:value={value} type={type}/>
 
 <style>
 .inputRecord{
@@ -19,6 +19,7 @@
   padding: 5px 10px;
   width: 100%;
   box-sizing: border-box;
+  outline: none;
 }
 
 </style>

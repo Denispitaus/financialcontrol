@@ -8,6 +8,9 @@
   <section class='bodyBlock'>
     <section class='addAndRecorded'>
       <NewRecord />
+      <section class="vieRecords">
+
+      </section>
     </section>
   </section>
 </div>
@@ -33,6 +36,10 @@
   gap: 15px;
   justify-content: space-between;
   align-items: center;
-
+}
+.vieRecords{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 </style>
