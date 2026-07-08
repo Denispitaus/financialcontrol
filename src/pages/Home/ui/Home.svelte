@@ -2,6 +2,7 @@
   import MainInfo from '$widgets/MainInfo';
   import NewRecord from '$features/NewRocord';
   import AllCategories from '$features/AllCategories';
+  import Graffic from '$widgets/Graffic';
 
   const MassiveRecord = $state([])
   let FreeMoney = $derived(
@@ -23,10 +24,16 @@
       <NewRecord JSRecords={MassiveRecord}/>
       <AllCategories MassivCategory={MassiveRecord}/>
     </section>
+    <section class="graffVie">
+      <Graffic massiv={MassiveRecord}/>
+    </section>
   </section>
 </div>
 
 <style>
+.graffVie{
+  width: 100%;
+}
 .home{
   width: 100%;
   display: flex;
@@ -45,10 +52,8 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  justify-content: space-between;
   align-items: center;
   min-width: 500px;
-
 }
 
 </style>
