@@ -71,6 +71,7 @@
   width: 100%;
   box-sizing: border-box;
   outline: none;
+  cursor: pointer;
 }
 .addRecord{
   padding: 15px;
