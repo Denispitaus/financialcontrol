@@ -20,7 +20,7 @@
           <Title text={el.TitleSave} className='CategoryTitle'/>
         </div>
         <div class='numberName'>
-          <Title text={el.NumberSave} className={el.ButtonSave? "CategoryTitleGreen" : "CategoryTitleRed"}/>
+          <Title text={el.NumberSave + ' ₽'} className={el.ButtonSave? "CategoryTitleGreen" : "CategoryTitleRed"}/>
           <Button className='btnRed' text='✕' onclick={()=>{MassivCategory.splice(index, 1)}}/>
         </div>
     </section>

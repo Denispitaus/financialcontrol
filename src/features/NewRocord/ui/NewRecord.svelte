@@ -12,9 +12,18 @@
   let TitleSave = $state('')
   let DaySave = $state()
   let ButtonSave = $state(true)
+  let ColorInputError = $state(false)
+  let ColorInputErrorNumber = $state(false)
 
   function clickAddRecord(){
-    JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave})
+    if(TitleSave.length >= 0 && NumberSave >= 0){
+      JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave})
+    }
+    else{
+      ColorInputError = true
+      ColorInputErrorNumber = true
+      return
+    }
   }
   function clickRedBtn(){
     ButtonSave = false
@@ -34,9 +43,9 @@
     <Button text='- Расход' className={!ButtonSave? "btnRecordReActive" : "btnRecordRed"} onclick={clickRedBtn}/>
   </div>
   <Title text='Название категории' className='MainInfoTitle'/>
-  <Input className='inputRecord' placeholder='Например: Аренда, Еда...' type='text' bind:value={TitleSave}/>
+  <Input className={ColorInputError? 'inputRecordError' : 'inputRecord'} placeholder='Например: Аренда, Еда...' type='text' bind:value={TitleSave}/>
   <Title text='Сумма, ₽' className='MainInfoTitle'/>
-  <Input className='inputRecord' placeholder='0.00' type='number' bind:value={NumberSave}/>
+  <Input className={ColorInputErrorNumber? 'inputRecordError' : 'inputRecord'} placeholder='0.00' type='number' bind:value={NumberSave}/>
   <Title text='День месяца' className='MainInfoTitle'/>
 
   <select id="country" name="country" class="inputRecord" bind:value={DaySave}>

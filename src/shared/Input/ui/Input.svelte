@@ -21,5 +21,15 @@
   box-sizing: border-box;
   outline: none;
 }
-
+.inputRecordError{
+  border-radius: var(--rounded-medium);
+  border: 1px solid var(--danger);
+  color: var(--muted-foreground);
+  font-size: var(--font-small);
+  background-color: var(--input);
+  padding: 5px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
 </style>
