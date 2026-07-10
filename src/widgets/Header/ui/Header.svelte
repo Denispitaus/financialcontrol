@@ -2,33 +2,18 @@
   import Title from '$shared/Title';
   import Button from '$shared/Button';
   import Paragraff from '$shared/Paragraff';
-  import { MonthData } from '$entities/MonthData';
-
-  let NumberMonth = $state(1);
-  let MonthName = $state('');
-
-  function VisibleMonth() {
-    const month = MonthData.find((item) => item.number === NumberMonth);
-    if (month) {
-      MonthName = month.month;
-    }
-  }
-  function checkNowDate(){
-    const date = new Date();
-    NumberMonth = date.getMonth() + 1;
-  }
-  function NextMonth() {
-    NumberMonth = NumberMonth < 12 ? NumberMonth + 1 : 1;
-    VisibleMonth();
-  }
-
-  function BackMonth() {
-    NumberMonth = NumberMonth > 1 ? NumberMonth - 1 : 12;
-    VisibleMonth();
-  }
+  
+  let {
+    monthname,
+    BackMonth,
+    NextMonth,
+    checkNowDate,
+    VisibleMonth
+  } = $props()
 
   checkNowDate();
   VisibleMonth()
+
 </script>
 
 <header>
@@ -40,7 +25,7 @@
     <Button text='<' className="headerButton" onclick={BackMonth}/>
     <div class='monthInfo'>
       <img class='icon-month' src="/icon-month.png" alt="Month">
-      <Paragraff text={MonthName} className="monthName"/>
+      <Paragraff text={monthname} className="monthName"/>
       <Paragraff text={new Date().getFullYear()} className="monthYear"/>
     </div>
     <Button text='>' className="headerButton" onclick={NextMonth}/>
@@ -58,6 +43,10 @@ header {
   align-items: center;
   padding: 10px 20px;
   background-color: var(--card);
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 5px 0 10px 1px var(--border);
 
 }
 .headerSection{
