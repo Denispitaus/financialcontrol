@@ -17,7 +17,7 @@
 
   function clickAddRecord(){
     if(TitleSave.length >= 0 && NumberSave >= 0){
-      JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave})
+      JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave, monthName})
     }
     else{
       ColorInputError = true
@@ -33,6 +33,7 @@
   }
   let {
     JSRecords,
+    monthName
   } = $props()
 </script>
 

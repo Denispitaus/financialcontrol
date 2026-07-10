@@ -4,6 +4,7 @@
   let {
     MassivCategory,
   } = $props()
+
 </script>
 
 

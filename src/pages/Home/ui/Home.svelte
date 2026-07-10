@@ -11,12 +11,12 @@
   let NumberMonth = $state(1);
   let FreeMoney = $derived(
     MassiveRecord
-      .filter(el => el.ButtonSave)
+      .filter(el => el.ButtonSave && el.monthName === MonthName)
       .reduce((sum, el) => sum + el.NumberSave, 0)
   );
   let NotMoney = $derived(
     MassiveRecord
-      .filter(el => !el.ButtonSave)
+      .filter(el => !el.ButtonSave && el.monthName === MonthName)
       .reduce((sum, el) => sum + el.NumberSave, 0)
   )
 
@@ -41,19 +41,20 @@
     const date = new Date();
     NumberMonth = date.getMonth() + 1;
   }
+  let FilterMassiveCategory = $derived(MassiveRecord.filter((el) => el.monthName === MonthName))
 </script>
 
 <section class="main">
   <Header monthname={MonthName} NextMonth={NextMonth} BackMonth={BackMonth} VisibleMonth={VisibleMonth} checkNowDate={checkNowDate}/>
   <div class='home'>
-    <MainInfo countCategory={MassiveRecord.length} freeMoney={FreeMoney} notMoney={NotMoney}/>
+    <MainInfo countCategory={FilterMassiveCategory.length} freeMoney={FreeMoney} notMoney={NotMoney} MonthName={MonthName}/>
     <section class='bodyBlock'>
       <section class='addAndRecorded'>
-        <NewRecord JSRecords={MassiveRecord}/>
-        <AllCategories MassivCategory={MassiveRecord}/>
+        <NewRecord JSRecords={MassiveRecord} monthName={MonthName}/>
+        <AllCategories MassivCategory={FilterMassiveCategory} MonthName={MonthName}/>
       </section>
       <section class="graffVie">
-        <Graffic massiv={MassiveRecord}/>
+        <Graffic massiv={FilterMassiveCategory}/>
       </section>
     </section>
   </div>
