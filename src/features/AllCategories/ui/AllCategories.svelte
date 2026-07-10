@@ -3,6 +3,7 @@
   import Button from "$shared/Button";
   let {
     MassivCategory,
+    realymassive
   } = $props()
 
 </script>
@@ -22,7 +23,7 @@
         </div>
         <div class='numberName'>
           <Title text={el.NumberSave + ' ₽'} className={el.ButtonSave? "CategoryTitleGreen" : "CategoryTitleRed"}/>
-          <Button className='btnRed' text='✕' onclick={()=>{MassivCategory.splice(index, 1)}}/>
+          <Button className='btnRed' text='✕' onclick={()=>{realymassive.splice(index, 1)}}/>
         </div>
     </section>
   {/each}
@@ -61,5 +62,6 @@
   align-items: center;
   width: 100%;
   justify-content: space-between;
+  transition: all 1s;
 }
 </style>

@@ -22,16 +22,19 @@ const {
   font-size: var(--font-huge);
   color: var(--income-foreground);
   margin-bottom: 10px;
+  transition: all 0.5s;
 }
 .MainInfoTitleMoneyRed{
   font-size: var(--font-huge);
   color: var(--danger-foreground);
   margin-bottom: 10px;
+  transition: all 0.5s;
 }
 .MainInfoTitleMoneyDefault{
   font-size: var(--font-huge);
   color: var(--foreground);
   margin-bottom: 10px;
+  transition: all 0.5s;
 }
 .TitleBlock{
   color:var(--foreground);

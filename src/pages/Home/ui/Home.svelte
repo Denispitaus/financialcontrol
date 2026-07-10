@@ -41,6 +41,7 @@
     const date = new Date();
     NumberMonth = date.getMonth() + 1;
   }
+
   let FilterMassiveCategory = $derived(MassiveRecord.filter((el) => el.monthName === MonthName))
 </script>
 
@@ -51,7 +52,7 @@
     <section class='bodyBlock'>
       <section class='addAndRecorded'>
         <NewRecord JSRecords={MassiveRecord} monthName={MonthName}/>
-        <AllCategories MassivCategory={FilterMassiveCategory} MonthName={MonthName}/>
+        <AllCategories MassivCategory={FilterMassiveCategory} realymassive={MassiveRecord}/>
       </section>
       <section class="graffVie">
         <Graffic massiv={FilterMassiveCategory}/>

@@ -31,6 +31,10 @@ const {
   text-align: center;
   border: 1px solid var(--danger);
   cursor: pointer;
+  transition: all 0.3s;
+}
+.btnRecordRed:hover{
+  background-color: #6e1a1a;
 }
 .btnRecordReActive{
   background-color: #8a2222;
@@ -55,6 +59,9 @@ const {
   cursor: pointer;
   transition: all 0.2s;
 }
+.btnRecordGreen:hover{
+  background-color: #14573b;
+}
 .btnRecordGreenActive{
   background-color: #0b6849;
   border: 1px solid #24b685;
@@ -67,6 +74,7 @@ const {
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .addCategore{
   border-radius: var(--rounded-medium);
   font-size: var(--font-small);
@@ -80,7 +88,10 @@ const {
   transition: all 0.2s;
 }
 .addCategore:active{
-  background-color: #5c9ecd;
+  background-color: #64acdf;
+}
+.addCategore:hover{
+  background-color: #3b6482;
 }
 .btnRed{
   border-radius: var(--rounded-small);

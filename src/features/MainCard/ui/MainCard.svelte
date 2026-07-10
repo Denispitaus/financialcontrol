@@ -28,6 +28,8 @@
   padding: 15px 15px;
   width: 100% ;
   box-sizing: border-box;
+
+  transition: all 0.5s;
 }
 .cardinfo-header{
   display: flex;
@@ -35,5 +37,8 @@
   align-items: center;
   margin-bottom: 10px;
 }
-
+.cardinfo:hover{
+  transform: translateX(5px) translateY(-5px);
+  box-shadow: 1px 1px 10px 1px var(--muted);
+}
 </style>
