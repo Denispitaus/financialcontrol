@@ -1,7 +1,6 @@
 <script>
   import Title from '$shared/Title';
   import { Chart, Axis, Grid } from '@faintshadow/flarecharts';
-
   let { massiv = [] } = $props();
 
   const prepared = $derived(
@@ -17,11 +16,9 @@
     prepared.length ? Math.max(...prepared.map((d) => d.value)) : 0
   );
 
-  const yTicks = $derived(() => {
-    if (!maxValue) return [0];
-    const step = Math.ceil(maxValue / 5);
-    return Array.from({ length: 6 }, (_, i) => i * step);
-  });
+const yTicks = $derived(
+  !maxValue ? [0] : Array.from({ length: 6 }, (_, i) => i * Math.ceil(maxValue / 5))
+);
 </script>
 
 <section class="body">
@@ -112,6 +109,7 @@
     width: 100%;
     min-height: 2px;
     border-radius: 6px 6px 0 0;
+    transition: height 0.4s ease;
   }
 
   .barLabel{

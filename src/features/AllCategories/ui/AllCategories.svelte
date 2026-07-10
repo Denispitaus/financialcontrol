@@ -1,6 +1,7 @@
 <script>
   import Title from "$shared/Title";
   import Button from "$shared/Button";
+  import {fade} from 'svelte/transition'
   let {
     MassivCategory,
     realymassive
@@ -15,7 +16,7 @@
     <Title text={MassivCategory.length + ' записей'} className='MainInfoTitle'/>
   </section>
   {#each MassivCategory as el, index (el)}
-    <section class="lineInfo">
+    <section transition:fade class="lineInfo">
         <div class="numberName">
           <Title text={index + 1 + '.'} className='MainInfoTitle'/>
           <div class={el.ButtonSave? 'green' : 'red'}></div>

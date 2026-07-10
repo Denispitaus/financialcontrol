@@ -1,6 +1,5 @@
 <script>
   import MainCard from '$features/MainCard';
-
   let {
     countCategory,
     freeMoney,

@@ -1,6 +1,5 @@
 <script>
   import Title from '$shared/Title';
-
   const{
     title,
     money,
