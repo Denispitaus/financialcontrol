@@ -23,5 +23,10 @@
   gap: 15px;
   width: 100%;
 }
-
+@media(max-width: 768px){
+  .maininfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
 </style>

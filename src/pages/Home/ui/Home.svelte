@@ -84,15 +84,33 @@
   justify-content: space-between;
   gap: 15px;
   width: 100%;
-  padding: 0 15px;
+
   box-sizing: border-box;
 }
 .addAndRecorded{
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding: 0 15px;
+  box-sizing: border-box;
   align-items: center;
   min-width: 500px;
 }
+@media(max-width: 768px){
+  .bodyBlock{
+    display: flex;
+    flex-direction: column;
 
+}
+  .main{
+    padding-bottom: 20px;
+  }
+  .addAndRecorded{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+}
 </style>

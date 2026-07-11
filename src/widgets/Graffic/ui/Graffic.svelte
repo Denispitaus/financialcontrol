@@ -65,14 +65,13 @@ const yTicks = $derived(
 <style>
   .body{
     background-color: var(--card);
-    padding: 15px;
     border-radius: var(--rounded-large);
-    margin-left: 15px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 100%;
     box-sizing: border-box;
+    padding: 15px;
   }
 
   .bodyGraff{
@@ -132,4 +131,10 @@ const yTicks = $derived(
   .yLabel{
     transform: translateY(50%);
   }
+  @media(max-width: 768px){
+  .body{
+    width: 100%;
+  }
+}
+
 </style>

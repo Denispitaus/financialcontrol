@@ -2,7 +2,7 @@
   import Title from '$shared/Title';
   import Button from '$shared/Button';
   import Paragraff from '$shared/Paragraff';
-  
+
   let {
     monthname,
     BackMonth,
@@ -47,6 +47,7 @@ header {
   top: 0;
   border-bottom: 1px solid var(--border);
   box-shadow: 5px 0 10px 1px var(--border);
+  z-index: 1000;
 
 }
 .headerSection{
