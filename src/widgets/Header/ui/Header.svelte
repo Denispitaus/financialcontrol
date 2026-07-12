@@ -19,13 +19,13 @@
 
 <header>
   <section class='headerSection'>
-    <img src="/icon-logo.png" alt="Logo">
+    <img src="/financialcontrol/icon-logo.png" alt="Logo">
     <Title text="Контроль финансов" className="headerTitle"/>
   </section>
   <section class='headerSection'>
     <Button text='<' className="headerButton" onclick={BackMonth}/>
     <div class='monthInfo'>
-      <img class='icon-month' src="/icon-month.png" alt="Month">
+      <img class='icon-month' src="/financialcontrol/icon-month.png" alt="Month">
       <Paragraff text={monthname} className="monthName"/>
       <Paragraff text={new Date().getFullYear()} className="monthYear"/>
     </div>
