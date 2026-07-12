@@ -4,9 +4,12 @@
   import {fade} from 'svelte/transition'
   let {
     MassivCategory,
-    realymassive
+    onDeleteItem
   } = $props()
 
+    function removeItem(id) {
+    onDeleteItem(id);
+  }
 </script>
 
 
@@ -15,7 +18,7 @@
     <Title text='Список категорий' className='TitleBlock'/>
     <Title text={MassivCategory.length + ' записей'} className='MainInfoTitle'/>
   </section>
-  {#each MassivCategory as el, index (el)}
+  {#each MassivCategory as el, index (el.id)}
     <section transition:fade class="lineInfo">
         <div class="numberName">
           <Title text={index + 1 + '.'} className='MainInfoTitle'/>
@@ -24,7 +27,7 @@
         </div>
         <div class='numberName'>
           <Title text={el.NumberSave + ' ₽'} className={el.ButtonSave? "CategoryTitleGreen" : "CategoryTitleRed"}/>
-          <Button className='btnRed' text='✕' onclick={()=>{realymassive.splice(index, 1)}}/>
+          <Button className='btnRed' text='✕' onclick={()=>{removeItem(el.id)}}/>
         </div>
     </section>
   {/each}

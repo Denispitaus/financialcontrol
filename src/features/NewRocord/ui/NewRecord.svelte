@@ -17,7 +17,9 @@
 
   function clickAddRecord(){
     if(TitleSave.length >= 0 && NumberSave >= 0){
-      JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave, monthName})
+      JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave, monthName, id: crypto.randomUUID() })
+      ColorInputError = false;
+      ColorInputErrorNumber = false;
     }
     else{
       ColorInputError = true

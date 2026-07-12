@@ -6,7 +6,7 @@
   import Header from '$widgets/Header';
   import { MonthData } from '$entities/MonthData';
 
-  const MassiveRecord = $state([])
+  let MassiveRecord = $state([])
   let MonthName = $state('');
   let NumberMonth = $state(1);
   let FreeMoney = $derived(
@@ -42,6 +42,10 @@
     NumberMonth = date.getMonth() + 1;
   }
 
+  function deleteItem(id) {
+    MassiveRecord = MassiveRecord.filter(el => el.id !== id);
+  }
+
   let FilterMassiveCategory = $derived(MassiveRecord.filter((el) => el.monthName === MonthName))
 </script>
 
@@ -52,7 +56,7 @@
     <section class='bodyBlock'>
       <section class='addAndRecorded'>
         <NewRecord JSRecords={MassiveRecord} monthName={MonthName}/>
-        <AllCategories MassivCategory={FilterMassiveCategory} realymassive={MassiveRecord}/>
+        <AllCategories MassivCategory={FilterMassiveCategory} onDeleteItem={deleteItem}/>
       </section>
       <section class="graffVie">
         <Graffic massiv={FilterMassiveCategory}/>
@@ -111,6 +115,7 @@
     gap: 15px;
     align-items: center;
     width: 100%;
+    min-width: 0;
 }
 }
 </style>
