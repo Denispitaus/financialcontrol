@@ -3,11 +3,13 @@
     placeholder,
     className,
     value = $bindable(),
-    type
+    type,
+    maxlength,
+    minlength
   } = $props()
 </script>
 
-<input placeholder={placeholder} class={className} bind:value={value} type={type}/>
+<input maxlength={maxlength} minlength={minlength} placeholder={placeholder} class={className} bind:value={value} type={type}/>
 
 <style>
 .inputRecord{

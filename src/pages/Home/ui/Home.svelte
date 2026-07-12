@@ -93,7 +93,6 @@
   justify-content: space-between;
   gap: 15px;
   width: 100%;
-
   box-sizing: border-box;
 }
 .addAndRecorded{
@@ -103,7 +102,7 @@
   padding: 0 15px;
   box-sizing: border-box;
   align-items: center;
-  min-width: 500px;
+  
 }
 @media(max-width: 768px){
   .bodyBlock{

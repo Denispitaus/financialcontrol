@@ -16,11 +16,13 @@
   let ColorInputErrorNumber = $state(false)
 
   function clickAddRecord(){
-    if(TitleSave.length >= 0 && NumberSave >= 0){
+    if(TitleSave.length > 0 && NumberSave > 0){
       JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave, monthName, id: crypto.randomUUID() })
       ColorInputError = false;
       ColorInputErrorNumber = false;
       localStorage.setItem('MassiveRecord', JSON.stringify(JSRecords))
+      TitleSave = ''
+      NumberSave = ''
     }
     else{
       ColorInputError = true
@@ -47,7 +49,7 @@
     <Button text='- Расход' className={!ButtonSave? "btnRecordReActive" : "btnRecordRed"} onclick={clickRedBtn}/>
   </div>
   <Title text='Название категории' className='MainInfoTitle'/>
-  <Input className={ColorInputError? 'inputRecordError' : 'inputRecord'} placeholder='Например: Аренда, Еда...' type='text' bind:value={TitleSave}/>
+  <Input className={ColorInputError? 'inputRecordError' : 'inputRecord'} minlength='1' maxlength='14' placeholder='Например: Аренда, Еда...' type='text' bind:value={TitleSave}/>
   <Title text='Сумма, ₽' className='MainInfoTitle'/>
   <Input className={ColorInputErrorNumber? 'inputRecordError' : 'inputRecord'} placeholder='0.00' type='number' bind:value={NumberSave}/>
   <Title text='День месяца' className='MainInfoTitle'/>

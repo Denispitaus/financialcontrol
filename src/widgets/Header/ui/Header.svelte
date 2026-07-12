@@ -49,6 +49,8 @@ header {
   border-bottom: 1px solid var(--border);
   box-shadow: 5px 0 10px 1px var(--border);
   z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
 
 }
 .headerSection{
