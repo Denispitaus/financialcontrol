@@ -102,7 +102,7 @@
   padding: 0 15px;
   box-sizing: border-box;
   align-items: center;
-  
+  width: 100%;
 }
 @media(max-width: 768px){
   .bodyBlock{
