@@ -20,6 +20,7 @@
       JSRecords.push({ButtonSave, NumberSave, TitleSave, DaySave, monthName, id: crypto.randomUUID() })
       ColorInputError = false;
       ColorInputErrorNumber = false;
+      localStorage.setItem('MassiveRecord', JSON.stringify(JSRecords))
     }
     else{
       ColorInputError = true

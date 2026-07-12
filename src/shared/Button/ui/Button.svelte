@@ -20,6 +20,8 @@ const {
   border-radius: var(--rounded-medium);
   font-weight: 600;
   cursor: pointer;
+  height: 100%;
+  padding: 0 10px;
 }
 .btnRecordRed{
   background-color: var(--danger);

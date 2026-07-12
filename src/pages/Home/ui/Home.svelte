@@ -5,6 +5,7 @@
   import Graffic from '$widgets/Graffic';
   import Header from '$widgets/Header';
   import { MonthData } from '$entities/MonthData';
+	import { onMount } from 'svelte';
 
   let MassiveRecord = $state([])
   let MonthName = $state('');
@@ -44,9 +45,13 @@
 
   function deleteItem(id) {
     MassiveRecord = MassiveRecord.filter(el => el.id !== id);
+    localStorage.setItem('MassiveRecord', JSON.stringify(MassiveRecord));
   }
 
   let FilterMassiveCategory = $derived(MassiveRecord.filter((el) => el.monthName === MonthName))
+  onMount(()=>{
+    MassiveRecord = JSON.parse(localStorage.getItem('MassiveRecord') || '[]')
+  })
 </script>
 
 <section class="main">

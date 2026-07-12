@@ -12,9 +12,10 @@
   } = $props()
 
   checkNowDate();
-  VisibleMonth()
+  VisibleMonth();
 
 </script>
+
 
 <header>
   <section class='headerSection'>
@@ -54,6 +55,7 @@ header {
   display: flex;
   align-items: center;
   gap: 10px;
+
 }
 .monthInfo{
   display: flex;
@@ -64,5 +66,36 @@ header {
   border-radius: var(--rounded-medium);
   padding: 3px 10px;
   width: 120px;
+}
+@media(max-width: 470px){
+  header {
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    flex-direction: column;
+    padding: 10px 20px;
+    background-color: var(--card);
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 5px 0 10px 1px var(--border);
+    z-index: 1000;
+  }
+  .monthInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    background-color: var(--secondary);
+    border-radius: var(--rounded-medium);
+    padding: 3px 10px;
+    width: 100%;
+  }
+  .headerSection{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
 }
 </style>

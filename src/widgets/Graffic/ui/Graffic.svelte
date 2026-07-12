@@ -1,6 +1,6 @@
 <script>
   import Title from '$shared/Title';
-  import { Chart, Axis, Grid } from '@faintshadow/flarecharts';
+  import {fade} from 'svelte/transition'
   let { massiv = [] } = $props();
 
   const prepared = $derived(
@@ -8,62 +8,135 @@
       day: Number(item.DaySave),
       value: Number(item.NumberSave),
       title: item.TitleSave,
-      isProfit: item.ButtonSave
+      isProfit: Boolean(item.ButtonSave)
     }))
   );
 
-  const maxValue = $derived(
-    prepared.length ? Math.max(...prepared.map((d) => d.value)) : 0
+  const incomeTotal = $derived(
+    prepared
+      .filter((item) => item.isProfit)
+      .reduce((sum, item) => sum + Math.abs(item.value), 0)
   );
 
-const yTicks = $derived(
-  !maxValue ? [0] : Array.from({ length: 6 }, (_, i) => i * Math.ceil(maxValue / 5))
-);
+  const expenseTotal = $derived(
+    prepared
+      .filter((item) => !item.isProfit)
+      .reduce((sum, item) => sum + Math.abs(item.value), 0)
+  );
+
+  const total = $derived(incomeTotal - expenseTotal);
+
+  const pieData = $derived([
+    { title: 'Доход', value: incomeTotal, color: '#01ff01' },
+    { title: 'Расход', value: expenseTotal, color: '#ff0101' }
+  ]);
+
+  const radius = 90;
+  const strokeWidth = 36;
+  const cx = 120;
+  const cy = 120;
+
+  const polarToCartesian = (centerX, centerY, r, angleDeg) => {
+    const angleRad = (angleDeg - 90) * (Math.PI / 180);
+    return {
+      x: centerX + r * Math.cos(angleRad),
+      y: centerY + r * Math.sin(angleRad)
+    };
+  };
+
+  const describeArc = (x, y, r, startAngle, endAngle) => {
+    const start = polarToCartesian(x, y, r, endAngle);
+    const end = polarToCartesian(x, y, r, startAngle);
+    const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+    return [
+      `M ${start.x} ${start.y}`,
+      `A ${r} ${r} 0 ${largeArcFlag} 0 ${end.x} ${end.y}`
+    ].join(' ');
+  };
+
+  const segments = $derived.by(() => {
+    const sum = pieData.reduce((acc, item) => acc + item.value, 0);
+    let start = 0;
+
+    return pieData.map((item) => {
+      const percent = sum ? item.value / sum : 0;
+      const angle = percent * 360;
+
+      const segment = {
+        ...item,
+        percent,
+        startAngle: start,
+        endAngle: start + angle
+      };
+
+      start += angle;
+      return segment;
+    });
+  });
 </script>
 
 <section class="body">
   <Title text="График изменения финансов" className="TitleBlock" />
 
-  <div class="bodyGraff">
-    <Chart>
-      <Grid y dash="3 3" />
+  <div class="pieLayout">
+    <div class="pieWrap">
+      <svg viewBox="0 0 240 240" class="pieSvg">
+        {#if incomeTotal + expenseTotal > 0}
+          {#each segments as item(item)}
+            <path
+              transition:fade
+              d={describeArc(cx, cy, radius, item.startAngle, item.endAngle)}
+              stroke={item.color}
+              stroke-width={strokeWidth}
+              fill="none"
+              stroke-linecap="butt"
+              title={`${item.title}: ${item.value} ₽`}
+            />
+          {/each}
+        {/if}
 
-      <Axis
-        placement="bottom"
-        ticks={7}
-        rotate={-30}
-        format={(v) => `День ${v}`}
-      />
+        <circle
+          cx={cx}
+          cy={cy}
+          r={radius - strokeWidth / 2}
+          fill="transparent"
+        />
+        <circle
+          cx={cx}
+          cy={cy}
+          r={radius + strokeWidth / 2}
+          fill="transparent"
+        />
+      </svg>
 
-      <Axis
-        placement="left"
-        ticks={10}
-        format={(v) => `${v} ₽`}
-      />
-    </Chart>
-
-    <div class="barsWrap">
-      {#each prepared as item(item)}
-        <div class="barGroup" title={`${item.title}: ${item.value} ₽`}>
-          <div
-            class="bar"
-            style={`height: ${maxValue ? (item.value / maxValue) * 100 : 0}%; background: ${item.isProfit ? '#01ff01' : '#ff0101'};`}
-          ></div>
-          <div class="barLabel">{item.day}</div>
-        </div>
-      {/each}
+      <div class="centerText">
+        <div class="centerValue">{total} ₽</div>
+        <div class="centerLabel">Чистый итог</div>
+      </div>
     </div>
 
-    <div class="yLabels">
-      {#each yTicks as tick(tick)}
-        <div class="yLabel">{tick} ₽</div>
-      {/each}
+    <div class="legend">
+      <div class="legendItem">
+        <span class="legendColor" style="background:#01ff01"></span>
+        <div class="legendText">
+          <div class="legendTitle">Доход</div>
+          <div class="legendMeta">{incomeTotal} ₽</div>
+        </div>
+      </div>
+
+      <div class="legendItem">
+        <span class="legendColor" style="background:#ff0101"></span>
+        <div class="legendText">
+          <div class="legendTitle">Расход</div>
+          <div class="legendMeta">{expenseTotal} ₽</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .body{
+  .body {
     background-color: var(--card);
     border-radius: var(--rounded-large);
     display: flex;
@@ -74,67 +147,91 @@ const yTicks = $derived(
     padding: 15px;
   }
 
-  .bodyGraff{
-    height: 500px;
+  .pieLayout {
     display: grid;
-    grid-template-columns: 50px 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 10px;
-  }
-
-  .barsWrap{
-    grid-column: 2;
-    grid-row: 2;
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    padding: 0 10px 10px 0;
-    border-bottom: 1px solid var(--border);
-    border-left: 1px solid var(--border);
-    min-height: 300px;
-  }
-
-  .barGroup{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
     align-items: center;
-    min-width: 18px;
-    height: 100%;
   }
 
-  .bar{
-    width: 100%;
-    min-height: 2px;
-    border-radius: 6px 6px 0 0;
-    transition: height 0.4s ease;
+  .pieWrap {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
   }
 
-  .barLabel{
-    margin-top: 6px;
+  .pieSvg {
+    width: 240px;
+    height: 240px;
+    display: block;
+    transform: rotate(-90deg);
+  }
+
+  .centerText {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .centerValue {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+
+  .centerLabel {
     font-size: 12px;
     color: var(--muted-foreground);
+    margin-top: 4px;
   }
 
-  .yLabels{
-    grid-column: 1;
-    grid-row: 2;
+  .legend {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 0 0 10px 0;
+    gap: 12px;
+  }
+
+  .legendItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .legendColor {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .legendTitle {
+    font-size: 14px;
+    color: var(--foreground);
+  }
+
+  .legendMeta {
     font-size: 12px;
     color: var(--muted-foreground);
+    margin-top: 2px;
   }
 
-  .yLabel{
-    transform: translateY(50%);
-  }
-  @media(max-width: 768px){
-  .body{
-    width: 100%;
-  }
-}
+  @media (max-width: 768px) {
+    .pieLayout {
+      grid-template-columns: 1fr;
+    }
 
+    .pieWrap {
+      width: 220px;
+      height: 220px;
+    }
+
+    .pieSvg {
+      width: 220px;
+      height: 220px;
+    }
+  }
 </style>
