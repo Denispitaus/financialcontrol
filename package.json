@@ -4,6 +4,7 @@
 	"version": "0.0.1",
 	"type": "module",
   "license": "MIT",
+  "homepage": "https://Denispitaus.github.io/financialcontrol",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -11,7 +12,7 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-    "deploy": "npm run build && gh-pages -d build -t"
+    "deploy": "npm run build && npx gh-pages -d build -t -f -r https://github.com/Denispitaus/financialcontrol.git"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",

@@ -9,23 +9,18 @@ const config = {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: 'index.html', // ✅ Правильно: HTML файл для SPA
-      strict: false // ✅ Добавьте, чтобы игнорировать ошибки
+      fallback: 'index.html',
+      strict: false
     }),
     files: {
       routes: 'src/app/routes',
-      appTemplate: 'src/app/index.html' // ✅ Убедитесь, что файл существует
+      appTemplate: 'src/app/index.html'
     },
     paths: {
-      base: process.env.NODE_ENV === 'production'
-        ? '/financialcontrol' // ✅ Замените на имя вашего репозитория
-        : ''
+      base: '/financialcontrol' // ✅ Имя вашего репозитория
     },
     prerender: {
-      handleHttpError: () => {
-        // Игнорируем ошибки
-        return;
-      }
+      handleHttpError: () => {}
     }
   }
 };
