@@ -1,0 +1,1 @@
+import{G as e,M as t,b as n,m as r,v as i}from"../chunks/B3m9LejR.js";import"../chunks/xihTtKlq.js";var a=n(`<main class="mainPage svelte-wd3yzh"><!></main>`);function o(n,o){var s=a();r(t(s),()=>o.children),e(s),i(n,s)}export{o as component};
