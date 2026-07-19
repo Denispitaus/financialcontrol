@@ -1,2 +1,2 @@
-import Label from "./ui/Label.svelte";
+import Label from './ui/Label.svelte';
 export default Label;

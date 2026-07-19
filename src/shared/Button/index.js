@@ -1,2 +1,2 @@
-import Button from "./ui/Button.svelte";
+import Button from './ui/Button.svelte';
 export default Button;

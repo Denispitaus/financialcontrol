@@ -4,22 +4,22 @@
 		"allowJs": true,
 		"checkJs": false,
 		"moduleResolution": "bundler",
-    "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
-    "paths": {
-      "$app": ["src/app"],
-      "$app/*": ["src/app/*"],
-      "$pages": ["src/pages"],
-      "$pages/*": ["src/pages/*"],
-      "$widgets": ["src/widgets"],
-      "$widgets/*": ["src/widgets/*"],
-      "shared":["src/shared"],
-      "shared/*":["src/shared/*"],
-      "entities":["src/entities"],
-      "entities/*":["src/entities/*"],
-      "features":["src/features"],
-      "features/*":["src/features/*"],
-    },
+		"baseUrl": ".",
+		"ignoreDeprecations": "6.0",
+		"paths": {
+			"$app": ["src/app"],
+			"$app/*": ["src/app/*"],
+			"$pages": ["src/pages"],
+			"$pages/*": ["src/pages/*"],
+			"$widgets": ["src/widgets"],
+			"$widgets/*": ["src/widgets/*"],
+			"shared": ["src/shared"],
+			"shared/*": ["src/shared/*"],
+			"entities": ["src/entities"],
+			"entities/*": ["src/entities/*"],
+			"features": ["src/features"],
+			"features/*": ["src/features/*"]
+		}
 	}
 
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
