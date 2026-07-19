@@ -8,12 +8,12 @@
   } = $props()
 </script>
 
-<section class='maininfo'>
+<div class='maininfo'>
   <MainCard title='ДОХОДЫ' moneyClass='MainInfoTitleMoney'  money={freeMoney + ' ₽'} date={'за ' + MonthName + ' ' + new Date().getFullYear()} />
   <MainCard title='РАСХОДЫ' moneyClass='MainInfoTitleMoneyRed' money={notMoney + ' ₽'} date={'за ' + MonthName + ' ' + new Date().getFullYear()} />
   <MainCard title='БАЛАНС' moneyClass='MainInfoTitleMoneyDefault' money={freeMoney - notMoney + ' ₽'} date='остаток'/>
   <MainCard title='КАТЕГОРИИ' moneyClass='MainInfoTitleMoneyDefault' money={countCategory} date='в этом месяце'/>
-</section>
+</div>
 
 
 <style>

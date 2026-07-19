@@ -9,15 +9,14 @@
   } = $props();
 </script>
 
-<section class='cardinfo'>
+<article class='cardinfo'>
   <div class='cardinfo-header'>
     <Title text={title} className='MainInfoTitle'/>
-
   </div>
 
   <Title text={money} className={moneyClass}/>
   <Title text={date} className='MainInfoTitle'/>
-</section>
+</article>
 
 <style>
 .cardinfo{

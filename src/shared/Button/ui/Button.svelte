@@ -2,13 +2,14 @@
 
 const {
   text,
+  type,
   className,
   onclick
 } = $props();
 </script>
 
 
-<button class={className} onclick={onclick}>
+<button type={type} class={className} onclick={onclick}>
   {text}
 </button>
 
